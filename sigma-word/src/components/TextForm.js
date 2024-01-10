@@ -32,12 +32,14 @@ export default function TextForm(props) {
     setText(temp);
   };
 
+  let styling = {color: props.mode==='light'?'black':'white',backgroundColor:props.mode==='light'?'white':'rgb(51 53 62)'};
+
   return (
     <>
-    <div className="container">
+    <div className="container" style={styling}>
+    <h3>Welcome to Sigma Text Analyzer</h3>
       <div className="mb-3">
-        <label htmlFor="exampleFormControlTextarea1" className="form-label">{props.label}</label>
-        <textarea className="form-control" value={text} onChange={stateChange} rows={props.rows}></textarea>
+        <textarea className="form-control my-3" value={text} placeholder={props.label} onChange={stateChange} rows={props.rows}  style={{color: props.mode==='light'?'black':'white',backgroundColor:props.mode==='light'?'white':'rgb(51 53 62)'}}></textarea>
       </div>
       <button type="button" onClick={handleUpper} className="btn btn-primary mx-3">Uppercase</button>
       <button type="button" onClick={handleLower} className="btn btn-primary mx-3">Lowercase</button>
@@ -45,11 +47,11 @@ export default function TextForm(props) {
       <button type="button" onClick={handleUpper} className="btn btn-primary mx-3">Capitalize</button>
       <button type="button" onClick={handleJsx} className="btn btn-primary mx-3">Convert to JSX</button>
     </div>
-    <div className="container my-4">
-        <h3>Summary of Your Text</h3>
-        <h6>Word Count {text.length && text.split(" ").length} Characters {text.length}</h6><br/>
+    <div className="container my-4" style={{color: props.mode==='light'?'black':'white',backgroundColor:props.mode==='light'?'white':'rgb(51 53 62)'}}>
+        <h4>Summary of Your Text</h4>
+        <h6>Word Count : {text.length && text.split(" ").length} &nbsp; | &nbsp; Characters {text.length}</h6><br/>
         <h6>Preview :</h6>
-        <p>{text}</p>
+        <p>{text.length?text:"Enter some text in the above field to preview here"}</p>
     </div>
     </>
   );
