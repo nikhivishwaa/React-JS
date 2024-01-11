@@ -20,6 +20,7 @@ export default function TextForm(props) {
       "<hr>": "<hr/>",
       " for=": " htmlFor=",
       " class=": " className=",
+      " tabindex=": " tabIndex="
     };
     for (const key in replaceJsx) {
       temp = temp.replaceAll(key, replaceJsx[key]);
