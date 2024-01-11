@@ -55,7 +55,7 @@ export default function TextForm(props) {
     backgroundColor: props.mode === "light" ? "white" : "rgb(51, 53, 62)",
   };
 
-  let wordArray = text.split(" ").filter((elem) => elem.length !== 0);
+  let wordArray = text.split(/\s+|\n/g).filter((elem) => elem.length !== 0);
   const handleTitle = () => {
     let regex = /\s+[a-z]/g;
     const title = (str) => {
@@ -70,15 +70,18 @@ export default function TextForm(props) {
       }
       return str;
     };
-    setText(title(text));
+    let caps = title(text);;
+    setText(caps.charAt(0).toUpperCase() + caps.slice(1));
     props.alert("converted to Title", "success");
   };
   const handleExtraSpaces = () => {
+    let wordArray = text.split(" ").filter((elem) => elem.length !== 0);
     setText(wordArray.join(" "));
     props.alert("removed extra spaces", "success");
   };
   const handleCopy = () => {
     navigator.clipboard.writeText(text);
+    props.alert("text copied to clipboard", "success");
   };
   let empty = text.length === 0 ? true : false;
 
@@ -91,7 +94,7 @@ export default function TextForm(props) {
         </h3>
         <div className="mb-3">
           <textarea
-            className="form-control my-3"
+            className="form-control my-3 txtarea"
             value={text}
             placeholder={props.label}
             onChange={stateChange}
@@ -168,8 +171,8 @@ export default function TextForm(props) {
       </div>
       <style>
         {props.mode === "dark"
-          ? `::placeholder { 
-              color: crimson; 
+          ? `.txtarea::placeholder { 
+              color: #e6e6e6; 
           }`
           : ""}
       </style>

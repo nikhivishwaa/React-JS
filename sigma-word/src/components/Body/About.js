@@ -102,6 +102,13 @@ export default function About(props) {
           </div>
         </div>
       </div>
+      <style>
+        {props.mode === "dark"
+          ? `.accordion-button::after {
+  filter: invert(); 
+}`
+          : ""}
+      </style>
     </>
   );
 }

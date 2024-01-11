@@ -52,7 +52,7 @@ function App() {
               exact path="/"
               element={
                 <TextForm
-                  label="Enter Your Text Here"
+                  label="Write your text here..."
                   rows="7"
                   mode={mode}
                   alert={displayAlert}
