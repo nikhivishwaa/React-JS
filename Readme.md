@@ -46,3 +46,5 @@ npm start
 ```
 npm install react-router-dom
 ```
+
+###### News Monkey Project Consists of class based components
