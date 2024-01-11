@@ -39,3 +39,10 @@ npm start
 
 ###### img, br, hr tag  writtern as <img/> <br/> <hr/> because all tags must be
 ###### terminated in JSX
+
+
+##### Router
+
+```
+npm install react-router-dom
+```
