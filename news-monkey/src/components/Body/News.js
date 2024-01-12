@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import Newsitem from "./Newsitem.js";
+import PropTypes from "prop-types";
 
 export class News extends Component {
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    api: PropTypes.string,
+    category: PropTypes.string,
+  };
+  static defaultProps = {
+    country: "in",
+    pageSize: 6,
+    category: "general",
+  };
+
   constructor() {
     super();
     this.state = {
@@ -12,7 +25,7 @@ export class News extends Component {
     console.log(this.state);
   }
   getArticles = async (page = 1) => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${this.props.api}&page=${page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.api}&page=${page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -48,14 +61,15 @@ export class News extends Component {
     return (
       <>
         <div className="container my-4">
-          <h3 className="my-3">NewsMonkey - Top Headlines</h3>
+          <h3 className="my-5 text-center">NewsMonkey - Top Headlines</h3>
           <div className="row">
-            {this.state.loading &&
+            {this.state.loading && (
               <div className="d-flex justify-content-center my-9">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
               </div>
-            </div>}
+            )}
             {!this.state.loading &&
               this.state.articles.map((article) => {
                 return (
@@ -65,6 +79,7 @@ export class News extends Component {
                       desc={article.description}
                       url={article.url}
                       image={article.urlToImage}
+                      date={article.publishedAt}
                     />
                   </div>
                 );
