@@ -6,12 +6,16 @@ export class Newsitem extends Component {
     return (
       <>
         <div className="card" style={{ width: "18rem" }}>
-          <img src={image} className="card-img-top" alt="..." />
+          <img
+            src={image ? image : "https://shorturl.at/hjpBL"}
+            className="card-img-top"
+            alt="..."
+          />
           <div className="card-body">
-            <h5 className="card-title">{title}</h5>
-            <p className="card-text">{desc}</p>
-            <a href={url} className="btn btn-primary">
-              Go to Site
+            <h5 className="card-title">{title ? title.slice(0, 45) : ""}</h5>
+            <p className="card-text">{desc ? desc.slice(0, 88) : ""}</p>
+            <a href={url} target="_blank" className="btn btn-sm btn-dark">
+              Go to Site &rarr;
             </a>
           </div>
         </div>
