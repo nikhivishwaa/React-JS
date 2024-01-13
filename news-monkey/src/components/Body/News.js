@@ -22,7 +22,6 @@ export class News extends Component {
       loading: false,
       page: 1,
     };
-    console.log(this.state);
   }
   getArticles = async (page = 1) => {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.api}&page=${page}&pageSize=${this.props.pageSize}`;
@@ -80,6 +79,8 @@ export class News extends Component {
                       url={article.url}
                       image={article.urlToImage}
                       date={article.publishedAt}
+                      source={article.source.name}
+                      author={article.author}
                     />
                   </div>
                 );
