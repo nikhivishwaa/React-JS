@@ -48,3 +48,21 @@ npm install react-router-dom
 ```
 
 ###### News Monkey Project Consists of class based components
+
+##### Environment Variavle
+
+###### Step 1: create .env.local file
+
+```
+inside the react app it is already mentioned in .gitignore file
+```
+
+###### Create env variables starts with `REACT_APP_`
+```
+REACT_APP_VARNAME = 'sfdg'
+```
+
+###### Access env variables in .js files 
+```
+let value = process.env.REACT_APP_VARNAME;
+```

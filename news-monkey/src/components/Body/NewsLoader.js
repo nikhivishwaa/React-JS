@@ -10,11 +10,13 @@ export class News extends Component {
         pageSize: PropTypes.number,
         api: PropTypes.string,
         category: PropTypes.string,
+        topic: PropTypes.string,
     };
     static defaultProps = {
         country: "in",
         pageSize: 9,
         category: "general",
+        topic:"",
     };
 
     constructor() {
@@ -34,12 +36,15 @@ export class News extends Component {
         return parsedData;
     };
     async componentDidMount() {
+        this.props.progress(30);
         let res = await this.getArticles();
+        this.props.progress(80);
         this.setState({
             articles: res.articles,
             loading: false,
             total: res.totalResults,
         });
+        this.props.progress(100);
     }
     loadData = async () => {
         let res = await this.getArticles();
@@ -48,18 +53,19 @@ export class News extends Component {
         });
     };
 
+    caps = (str) => str.charAt(0).toUpperCase() + str.slice(1);
     render() {
         return (
             <>
                 <div className="container my-4">
-                    <h3 className="my-5 text-center">NewsMonkey - Top Headlines</h3>
+                    <h3 className="my-5 text-center">NewsMonkey - Top {this.props.topic ? this.caps(this.props.topic) : ""} Headlines</h3>
                     {this.state.loading && (<Loader />)}
                     <InfiniteScroll
                         dataLength={this.state.articles.length}
                         next={this.loadData}
                         hasMore={this.state.total > this.state.articles.length}
                         loader={<Loader />}
-                        style={{overflow:"hidden"}}
+                        style={{ overflow: "hidden" }}
                     >
                         <div className="row">
                             {this.state.articles.map((article) => {

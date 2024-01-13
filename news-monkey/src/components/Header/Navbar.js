@@ -5,7 +5,7 @@ export class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar navbar-expand-lg bg-dark">
+        <nav className="navbar navbar-expand-lg bg-dark fixed-top">
           <div className="container-fluid">
             <NavLink className="navbar-brand text-light" to="/">
               NewsMonkey
@@ -17,7 +17,7 @@ export class Navbar extends Component {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink className="nav-link text-light mx-2" to="/">
-                    General
+                    Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
@@ -36,6 +36,11 @@ export class Navbar extends Component {
                 <li className="nav-item">
                   <NavLink className="nav-link text-light mx-2" to="/health">
                     Health
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link text-light mx-2" to="/general">
+                    General
                   </NavLink>
                 </li>
                 <li className="nav-item">
